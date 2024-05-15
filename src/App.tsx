@@ -76,49 +76,40 @@ export default function App() {
     return () => clearInterval(time);
   }, [doneLists]);
 
-  const columnStyle = " flex flex-col justify-start items-center bg-[#efefef]";
-  const h1Style = " text-[2rem] font-bold text-center mb-5";
+  const columnStyle =
+    " flex flex-col w-full justify-start items-center bg-[#efefef] rounded-3xl";
+  const h1Style = " text-[2rem] font-bold text-center my-2";
+  const buttonStyle = `transition-all duration-200 cursor-pointer text-center py-4 my-2 drop-shadow-[0px_8px_25px_#00000055]
+  bg-gradient-to-tr from-[#540000] to-[#3a0101] hover:scale-105 active:scale-150 active:opacity-0 
+  w-[80%] max-w-[25rem] flex justify-center text-[#efefef] rounded-full`;
 
   // return component
   return (
-    <div className=" grid grid-cols-3 absolute w-full h-full">
+    <div className=" grid grid-cols-3 absolute w-full h-full gap-5 p-5">
       <div className={columnStyle}>
         <h1 className={h1Style}>Todo</h1>
         {todos.map((item, index) => (
-          <div key={index} onClick={() => add(item)}>
-            <Button>{item.name}</Button>
+          <div className={buttonStyle} key={index} onClick={() => add(item)}>
+            {item.name}
           </div>
         ))}
       </div>
       <div className={columnStyle}>
         <h1 className={h1Style}>Fruit</h1>
         {fruits.map((item, index) => (
-          <div key={index} onClick={() => del(item)}>
-            <Button>{item.name}</Button>
+          <div className={buttonStyle} key={index} onClick={() => del(item)}>
+            {item.name}
           </div>
         ))}
       </div>
       <div className={columnStyle}>
         <h1 className={h1Style}>Vegetable</h1>
         {vegetables.map((item, index) => (
-          <div key={index} onClick={() => del(item)}>
-            <Button>{item.name}</Button>
+          <div className={buttonStyle} key={index} onClick={() => del(item)}>
+            {item.name}
           </div>
         ))}
       </div>
     </div>
   );
 }
-
-// button element
-const Button = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div
-      className=" transition-all cursor-pointer text-center py-4 m-2 drop-shadow-[0px_8px_25px_#00000055] 
-                  bg-gradient-to-tr from-[#540000] to-[#3a0101] 
-                  hover:scale-105 active:scale-y-0 w-[25rem] text-[#efefef] rounded-full"
-    >
-      {children}
-    </div>
-  );
-};
